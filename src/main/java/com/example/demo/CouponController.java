@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -23,6 +24,12 @@ public class CouponController {
     @PostMapping("/cupon")
     public Coupon create(@RequestBody Coupon coupon) {
         System.out.println(coupon);
-        return repository.save(coupon);
+        try {
+            new GereteCoupon().excecute(new Comprovate("marcos", "508808805986"), "logo.jpeg");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+        //return repository.save(coupon);
     }
 }
