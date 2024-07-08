@@ -17,3 +17,13 @@ spring:
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 587
+    username: 652c85cd3d1953
+    password: 5a50d79d740bf4
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true

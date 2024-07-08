@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Receipt</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header img { max-width: 100px; }
+        .content { margin-bottom: 20px; }
+        .content .label { font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="classpath:static/logo.jpeg" alt="Logo" />
+        <h1>Payment Receipt</h1>
+    </div>
+    <div class="content">
+        <p><span class="label">Customer Name:</span> {{customerName}}</p>
+        <p><span class="label">Payment Date:</span> {{paymentDate}}</p>
+        <p><span class="label">Amount Paid:</span> {{amountPaid}}</p>
+        <p><span class="label">Description:</span> {{description}}</p>
+    </div>
+</div>
+</body>
+</html>
