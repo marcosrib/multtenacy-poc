@@ -29,6 +29,28 @@ public class CouponController {
         return repository.findAll();
     }
 
+    @GetMapping("/key")
+    public String getKey() throws Exception {
+
+        return Cryptography.generateKey();
+
+    }
+
+    @GetMapping("/encrypt")
+    public String getEncrypt(@RequestParam("key") String key,  @RequestParam("text") String text) throws Exception {
+
+        return Cryptography.encrypt(text, key);
+
+    }
+
+    @GetMapping("/dencrypt")
+    public String getDncrypt(@RequestParam("key") String key,  @RequestParam("text") String text) throws Exception {
+
+        return Cryptography.decrypt(text, key);
+
+    }
+
+
     @PostMapping("/cupon")
     public Coupon create(@RequestBody Coupon coupon) throws MessagingException {
         System.out.println(coupon);
