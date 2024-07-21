@@ -7,7 +7,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.spec.IvParameterSpec;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -30,22 +33,25 @@ public class CouponController {
     }
 
     @GetMapping("/key")
-    public String getKey() throws Exception {
-
-        return Cryptography.generateKey();
+    public List<Object> getKey() throws Exception {
+        return Arrays.asList(Cryptography.generateKey(), Cryptography.generateIv());
 
     }
 
     @GetMapping("/encrypt")
     public String getEncrypt(@RequestParam("key") String key,  @RequestParam("text") String text) throws Exception {
-
+        String ivString = "OIUuDAtwlTw2O0Kd5GOgKA";
+        byte[] byteArray = ivString.getBytes(StandardCharsets.UTF_8);
+        byte[] ivBytes = Arrays.copyOf(byteArray, 16);
         return Cryptography.encrypt(text, key);
 
     }
 
     @GetMapping("/dencrypt")
     public String getDncrypt(@RequestParam("key") String key,  @RequestParam("text") String text) throws Exception {
-
+        String ivString = "OIUuDAtwlTw2O0Kd5GOgKA";
+        byte[] byteArray = ivString.getBytes(StandardCharsets.UTF_8);
+        byte[] ivBytes = Arrays.copyOf(byteArray, 16);
         return Cryptography.decrypt(text, key);
 
     }
