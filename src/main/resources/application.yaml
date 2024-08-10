@@ -1,6 +1,7 @@
 server:
   port: 8082
-
+  application:
+    name: demo
 spring:
   jpa:
     show-sql: true
@@ -27,3 +28,27 @@ spring:
         smtp:
           auth: true
           starttls.enable: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+otel:
+  traces:
+    exporter: otlp
+  metrics:
+    exporter: otlp
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317  # Endpoint do OpenTelemetry Collector para gRPC
+      protocol: grpc
+  service:
+    name: demo
+  logging:
+    level:
+      org.springframework.cloud.sleuth: DEBUG
+      io.opentelemetry: DEBUG
